@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Management Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 0;
+            border-bottom: 1px solid #30363d;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 600;
+            color: #58a6ff;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #8b949e;
+            font-size: 14px;
+        }
+
+        .category-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 500;
+            margin: 2px 2px 2px 0;
+        }
+
+        .badge-education {
+            background: rgba(31, 111, 235, 0.2);
+            border: 1px solid rgba(31, 111, 235, 0.4);
+            color: #58a6ff;
+        }
+
+        .badge-investment {
+            background: rgba(35, 134, 54, 0.2);
+            border: 1px solid rgba(35, 134, 54, 0.4);
+            color: #3fb950;
+        }
+
+        .badge-health {
+            background: rgba(163, 113, 247, 0.2);
+            border: 1px solid rgba(163, 113, 247, 0.4);
+            color: #bc8cff;
+        }
+
+        .badge-transportation {
+            background: rgba(210, 153, 34, 0.2);
+            border: 1px solid rgba(210, 153, 34, 0.4);
+            color: #e3b341;
+        }
+
+        .badge-household {
+            background: rgba(248, 81, 73, 0.2);
+            border: 1px solid rgba(248, 81, 73, 0.4);
+            color: #ff7b72;
+        }
+
+        .badge-other {
+            background: rgba(139, 148, 158, 0.2);
+            border: 1px solid rgba(139, 148, 158, 0.4);
+            color: #8b949e;
+        }
+
+        .table-container {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: #21262d;
+        }
+
+        th {
+            padding: 6px 8px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 11px;
+            color: #8b949e;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #30363d;
+            border-right: 1px solid #30363d;
+        }
+
+        td {
+            padding: 5px 8px;
+            border-bottom: 1px solid #30363d;
+            border-right: 1px solid #30363d;
+            font-size: 12px;
+        }
+
+        th:last-child, td:last-child {
+            border-right: none;
+        }
+
+        tbody tr:hover {
+            background: #1c2128;
+        }
+
+        .current-month-table tbody tr.paid-row td,
+        .current-month-table tbody tr.paid-row td * {
+            color: #3fb950;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .amount {
+            font-weight: 600;
+            color: #58a6ff;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .remaining-ok {
+            color: #3fb950;
+        }
+
+        .remaining-over {
+            color: #e3b341;
+        }
+
+        .notes {
+            color: #8b949e;
+            font-size: 12px;
+        }
+
+        .category-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .category-item {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .category-chart-container {
+            position: relative;
+            height: 446px;
+            padding: 16px;
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+
+        .category-name {
+            font-size: 14px;
+            color: #c9d1d9;
+        }
+
+        .category-amount {
+            font-weight: 600;
+            color: #58a6ff;
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            table {
+                font-size: 11px;
+            }
+
+            th, td {
+                padding: 6px 8px;
+            }
+
+        }
+
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+
+            .table-container {
+                border: 1px solid #ddd;
+                background: white;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💰 Expense Management Dashboard</h1>
+            <p class="subtitle">Generated on October 08, 2026 at 04:50 PM</p>
+        </header>
+
+                <h2 style="margin: 0 0 4px; color: #c9d1d9; font-size: 18px; line-height: 1.3;">October Expenses</h2>
+        <div class="table-container">
+            <table class="current-month-table">
+                <thead>
+                    <tr>
+                        <th>Expense Type</th>
+                        <th aria-sort="none"><button type="button" class="sort-button" data-column-index="1" data-sort-type="text">Category <span class="sort-indicator">&#8597;</span></button></th>
+                        <th aria-sort="none"><button type="button" class="sort-button" data-column-index="2" data-sort-type="date">Date / Month <span class="sort-indicator">&#8597;</span></button></th>
+                        <th aria-sort="none"><button type="button" class="sort-button" data-column-index="3" data-sort-type="amount">Amount <span class="sort-indicator">&#8597;</span></button></th>
+                        <th aria-sort="none"><button type="button" class="sort-button" data-column-index="4" data-sort-type="text">Status <span class="sort-indicator">&#8597;</span></button></th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="paid-row" data-expense-row="true">
+                        <td>mutual funds</td>
+                        <td><span class="category-badge badge-investment">Investment</span></td>
+                        <td>2026-10-05</td>
+                        <td class="amount">₹23,000</td>
+                        <td>Paid</td>
+                        <td class="notes">MFs repeats every month</td>
+                    </tr>
+                    <tr class="" data-expense-row="true">
+                        <td>protien food</td>
+                        <td><span class="category-badge badge-health-wellness">Health & Wellness</span></td>
+                        <td>Oct</td>
+                        <td class="amount">₹3,000</td>
+                        <td>Pending</td>
+                        <td class="notes">for health and fitness</td>
+                    </tr>
+                    <tr class="" data-expense-row="true">
+                        <td>Credit Card Bill</td>
+                        <td><span class="category-badge badge-expenses">Expenses</span></td>
+                        <td>Oct</td>
+                        <td class="amount">₹15,000</td>
+                        <td>Pending</td>
+                        <td class="notes">Credit Card Bill (check final amount)</td>
+                    </tr>
+                    <tr class="paid-row" data-expense-row="true">
+                        <td>Home maintenance</td>
+                        <td><span class="category-badge badge-expenses">Expenses</span></td>
+                        <td>2026-10-01</td>
+                        <td class="amount">₹2,500</td>
+                        <td>Paid</td>
+                        <td class="notes">Home society maintenance</td>
+                    </tr>
+                    <tr class="paid-row" data-expense-row="true">
+                        <td>Kids Kung-Fu</td>
+                        <td><span class="category-badge badge-kids-extracurricular">Kids Extracurricular</span></td>
+                        <td>Oct</td>
+                        <td class="amount">₹2,400</td>
+                        <td>Paid</td>
+                        <td class="notes">Kids Kung-Fu classes fee</td>
+                    </tr>
+                    <tr class="paid-row" data-expense-row="true">
+                        <td>Sanvi Dance Fee</td>
+                        <td><span class="category-badge badge-kids-extracurricular">Kids Extracurricular</span></td>
+                        <td>2026-10-01</td>
+                        <td class="amount">₹1,500</td>
+                        <td>Paid</td>
+                        <td class="notes">Sanvi Dance classes fee</td>
+                    </tr>
+                    <tr class="paid-row" data-expense-row="true">
+                        <td>LIC Premium</td>
+                        <td><span class="category-badge badge-insurance">Insurance</span></td>
+                        <td>2026-10-03</td>
+                        <td class="amount">₹6,388</td>
+                        <td>Paid</td>
+                        <td class="notes">LIC premium</td>
+                    </tr>
+                    <tr class="paid-row" data-expense-row="true">
+                        <td>TATA Insurance</td>
+                        <td><span class="category-badge badge-insurance">Insurance</span></td>
+                        <td>2026-10-03</td>
+                        <td class="amount">₹11,304</td>
+                        <td>Paid</td>
+                        <td class="notes">TATA Insurance premium final term</td>
+                    </tr>
+                    <tr class="" data-expense-row="true">
+                        <td>Dusshera transport fee</td>
+                        <td><span class="category-badge badge-festival">Festival</span></td>
+                        <td>Oct</td>
+                        <td class="amount">₹5,000</td>
+                        <td>Pending</td>
+                        <td class="notes">Dusshera transport, 3K used</td>
+                    </tr>
+                    <tr class="" data-expense-row="true">
+                        <td>Dusshera shopping</td>
+                        <td><span class="category-badge badge-festival">Festival</span></td>
+                        <td>Oct</td>
+                        <td class="amount">₹5,000</td>
+                        <td>Pending</td>
+                        <td class="notes">Dusshera shopping</td>
+                    </tr>
+                    <tr class="" data-expense-row="true">
+                        <td>Sanvi Birthday</td>
+                        <td><span class="category-badge badge-celebration">Celebration</span></td>
+                        <td>Oct</td>
+                        <td class="amount">₹3,000</td>
+                        <td>Pending</td>
+                        <td class="notes">Sanvi Birthday</td>
+                    </tr>
+                    <tr class="" data-expense-row="true">
+                        <td>Brother Birthday Shirt</td>
+                        <td><span class="category-badge badge-celebration">Celebration</span></td>
+                        <td>Oct</td>
+                        <td class="amount">₹800</td>
+                        <td>Pending</td>
+                        <td class="notes">Brother Birthday Shirt</td>
+                    </tr>
+                    <tr class="" data-expense-row="true">
+                        <td>Kannaya Dress</td>
+                        <td><span class="category-badge badge-celebration">Celebration</span></td>
+                        <td>Oct</td>
+                        <td class="amount">₹1,200</td>
+                        <td>Pending</td>
+                        <td class="notes">Kannaya Dress</td>
+                    </tr>
+                    <tr class="paid-row" data-expense-row="true">
+                        <td>Sanvi Kung-Fu Belt Test fee</td>
+                        <td><span class="category-badge badge-kids-extracurricular">Kids Extracurricular</span></td>
+                        <td>2026-10-07</td>
+                        <td class="amount">₹2,200</td>
+                        <td>Paid</td>
+                        <td class="notes">Kids Kung-Fu Belt Test fee</td>
+                    </tr>
+                    <tr class="paid-row" data-expense-row="true">
+                        <td>Dhruvin Kung-Fu Belt Test fee</td>
+                        <td><span class="category-badge badge-kids-extracurricular">Kids Extracurricular</span></td>
+                        <td>2026-10-07</td>
+                        <td class="amount">₹1,400</td>
+                        <td>Paid</td>
+                        <td class="notes">Kids Kung-Fu Belt Test fee</td>
+                    </tr>
+                    <tr class="paid-row" data-expense-row="true">
+                        <td>Donation</td>
+                        <td><span class="category-badge badge-other">Other</span></td>
+                        <td>2026-10-07</td>
+                        <td class="amount">₹1,000</td>
+                        <td>Paid</td>
+                        <td class="notes">For Kola family RP</td>
+                    </tr>
+                    <tr class="paid-row" data-expense-row="true">
+                        <td>Loan to Rajendar</td>
+                        <td><span class="category-badge badge-other">Other</span></td>
+                        <td>2026-10-08</td>
+                        <td class="amount">₹15,000</td>
+                        <td>Paid</td>
+                        <td class="notes">Personal loan to Rajendar</td>
+                    </tr>
+                    <tr class="" data-expense-row="true">
+                        <td>Chitti Birthday</td>
+                        <td><span class="category-badge badge-celebration">Celebration</span></td>
+                        <td>Oct</td>
+                        <td class="amount">₹5,000</td>
+                        <td>Pending</td>
+                        <td class="notes">Chitti Birthday</td>
+                    </tr>
+                    <tr class="" data-expense-row="true">
+                        <td>ACT wifi</td>
+                        <td><span class="category-badge badge-expenses">Expenses</span></td>
+                        <td>Oct</td>
+                        <td class="amount">₹3,600</td>
+                        <td>Pending</td>
+                        <td class="notes">ACT wifi bill</td>
+                    </tr>
+                    <tr class="" data-expense-row="true">
+                        <td>Sanvi school transport fee</td>
+                        <td><span class="category-badge badge-education">Education</span></td>
+                        <td>Oct</td>
+                        <td class="amount">₹20,000</td>
+                        <td>Pending</td>
+                        <td class="notes">transport final term</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><strong>Paid Total</strong></td>
+                        <td class="amount"><strong>₹66,692</strong></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><strong>Pending Total</strong></td>
+                        <td class="amount"><strong>₹61,600</strong></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><strong>Current Month Total</strong></td>
+                        <td class="amount"><strong>₹128,292</strong></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <h2 style="margin-bottom: 20px; color: #c9d1d9; font-size: 20px;">October Expenses by Category</h2>
+        <div class="category-summary">
+            <div class="category-item">
+                <span class="category-name">
+                    <span class="category-badge badge-investment">Investment</span>
+                </span>
+                <span class="category-amount">₹23,000</span>
+            </div>
+            <div class="category-item">
+                <span class="category-name">
+                    <span class="category-badge badge-expenses">Expenses</span>
+                </span>
+                <span class="category-amount">₹21,100</span>
+            </div>
+            <div class="category-item">
+                <span class="category-name">
+                    <span class="category-badge badge-education">Education</span>
+                </span>
+                <span class="category-amount">₹20,000</span>
+            </div>
+            <div class="category-item">
+                <span class="category-name">
+                    <span class="category-badge badge-insurance">Insurance</span>
+                </span>
+                <span class="category-amount">₹17,692</span>
+            </div>
+            <div class="category-item">
+                <span class="category-name">
+                    <span class="category-badge badge-other">Other</span>
+                </span>
+                <span class="category-amount">₹16,000</span>
+            </div>
+            <div class="category-item">
+                <span class="category-name">
+                    <span class="category-badge badge-festival">Festival</span>
+                </span>
+                <span class="category-amount">₹10,000</span>
+            </div>
+            <div class="category-item">
+                <span class="category-name">
+                    <span class="category-badge badge-celebration">Celebration</span>
+                </span>
+                <span class="category-amount">₹10,000</span>
+            </div>
+            <div class="category-item">
+                <span class="category-name">
+                    <span class="category-badge badge-kids-extracurricular">Kids Extracurricular</span>
+                </span>
+                <span class="category-amount">₹7,500</span>
+            </div>
+            <div class="category-item">
+                <span class="category-name">
+                    <span class="category-badge badge-health-wellness">Health & Wellness</span>
+                </span>
+                <span class="category-amount">₹3,000</span>
+            </div>
+        </div>
+
+        <h2 style="margin-bottom: 20px; color: #c9d1d9; font-size: 20px;">Monthly Budget vs Actual</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Budget</th>
+                        <th>Actual (Paid)</th>
+                        <th>Pending</th>
+                        <th>Remaining After Paid</th>
+                        <th>Projected Remaining</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Oct 2026</td>
+                        <td class="amount">₹120,000</td>
+                        <td class="amount">₹66,692</td>
+                        <td class="amount">₹61,600</td>
+                        <td class="amount remaining-ok">₹53,308</td>
+                        <td class="amount remaining-over">₹-8,292</td>
+                    </tr>
+                    <tr>
+                        <td>Nov 2026</td>
+                        <td class="amount">₹120,000</td>
+                        <td class="amount">₹0</td>
+                        <td class="amount">₹25,000</td>
+                        <td class="amount remaining-ok">₹120,000</td>
+                        <td class="amount remaining-ok">₹95,000</td>
+                    </tr>
+                    <tr>
+                        <td>Dec 2026</td>
+                        <td class="amount">₹120,000</td>
+                        <td class="amount">₹0</td>
+                        <td class="amount">₹16,000</td>
+                        <td class="amount remaining-ok">₹120,000</td>
+                        <td class="amount remaining-ok">₹104,000</td>
+                    </tr>
+                    <tr>
+                        <td>Apr 2027</td>
+                        <td class="amount">₹120,000</td>
+                        <td class="amount">₹0</td>
+                        <td class="amount">₹30,000</td>
+                        <td class="amount remaining-ok">₹120,000</td>
+                        <td class="amount remaining-ok">₹90,000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <h2 style="margin-bottom: 12px; margin-top: 40px; color: #c9d1d9; font-size: 20px;">Upcoming Expenses</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Expense Type</th>
+                        <th>Category</th>
+                        <th>Date / Month</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sanvi final term</td>
+                        <td><span class="category-badge badge-education">Education</span></td>
+                        <td>Nov</td>
+                        <td class="amount">₹25,000</td>
+                        <td>Pending</td>
+                        <td class="notes">tution fee final term</td>
+                    </tr>
+                    <tr>
+                        <td>Dhruvin final term fee</td>
+                        <td><span class="category-badge badge-education">Education</span></td>
+                        <td>Dec</td>
+                        <td class="amount">₹16,000</td>
+                        <td>Pending</td>
+                        <td class="notes">Dhruvin's final term</td>
+                    </tr>
+                    <tr>
+                        <td>Dhruvin Admission Fee</td>
+                        <td><span class="category-badge badge-education">Education</span></td>
+                        <td>2027-04-01</td>
+                        <td class="amount">₹30,000</td>
+                        <td>Pending</td>
+                        <td class="notes">Dhruvin's admission fee</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><strong>Upcoming Total</strong></td>
+                        <td class="amount"><strong>₹71,000</strong></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 style="margin-bottom: 12px; margin-top: 40px; color: #c9d1d9; font-size: 20px;">October Category Totals (Chart)</h2>
+        <div class="category-chart-container">
+            <canvas id="category-expenses-chart" role="img" aria-label="October expenses by category"></canvas>
+        </div>
+
+        <div style="text-align: center; color: #6e7681; font-size: 12px; margin-top: 40px; padding-top: 20px; border-top: 1px solid #30363d;">
+            <p>Expense Management Dashboard • Built with Python</p>
+        </div>
+    </div>
+    <script>
+const expensesTable = document.querySelector('.current-month-table');
+if (expensesTable) {
+    const tableBody = expensesTable.tBodies[0];
+    const sortButtons = expensesTable.querySelectorAll('.sort-button');
+
+    function getSortValue(row, columnIndex, sortType) {
+        const text = row.cells[columnIndex].textContent.trim();
+        if (sortType === 'amount') {
+            return Number(text.replace(/[^0-9.-]/g, '')) || 0;
+        }
+        if (sortType === 'date') {
+            const dateMatch = text.match(/^\d{4}-\d{2}-(\d{2})$/);
+            return dateMatch ? Number(dateMatch[1]) : Number.MAX_SAFE_INTEGER;
+        }
+        return text.toLocaleLowerCase();
+    }
+
+    sortButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const header = button.closest('th');
+            const ascending = header.getAttribute('aria-sort') !== 'ascending';
+            const columnIndex = Number(button.dataset.columnIndex);
+            const sortType = button.dataset.sortType;
+
+            expensesTable.querySelectorAll('thead th').forEach(cell => {
+                cell.setAttribute('aria-sort', 'none');
+            });
+            header.setAttribute('aria-sort', ascending ? 'ascending' : 'descending');
+            sortButtons.forEach(sortButton => {
+                sortButton.querySelector('.sort-indicator').textContent = String.fromCharCode(8597);
+            });
+            button.querySelector('.sort-indicator').textContent = String.fromCharCode(ascending ? 8593 : 8595);
+
+            const expenseRows = Array.from(tableBody.querySelectorAll('tr[data-expense-row="true"]'));
+            expenseRows.sort((left, right) => {
+                const leftValue = getSortValue(left, columnIndex, sortType);
+                const rightValue = getSortValue(right, columnIndex, sortType);
+                if (leftValue === rightValue) return 0;
+                const order = leftValue < rightValue ? -1 : 1;
+                return ascending ? order : -order;
+            });
+
+            const summaryRows = Array.from(tableBody.querySelectorAll('tr:not([data-expense-row="true"])'));
+            tableBody.replaceChildren(...expenseRows, ...summaryRows);
+        });
+    });
+}
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <script>
+        const categoryLabels = ["Investment", "Expenses", "Education", "Insurance", "Other", "Festival", "Celebration", "Kids Extracurricular", "Health & Wellness"];
+        const categoryValues = [23000.0, 21100.0, 20000.0, 17692.0, 16000.0, 10000.0, 10000.0, 7500.0, 3000.0];
+        const categoryCanvas = document.getElementById('category-expenses-chart');
+        if (categoryLabels.length && window.Chart) {
+            const categoryColors = ['#58a6ff', '#3fb950', '#e3b341', '#ff7b72', '#bc8cff', '#79c0ff', '#ffa657', '#f778ba'];
+            const currencyFormat = new Intl.NumberFormat('en-IN');
+            new Chart(categoryCanvas, {
+                type: 'bar',
+                data: {
+                    labels: categoryLabels,
+                    datasets: [{
+                        data: categoryValues,
+                        backgroundColor: categoryLabels.map((label, index) => categoryColors[index % categoryColors.length]),
+                        borderRadius: 4,
+                        barThickness: 24
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    layout: { padding: { right: 92 } },
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            suggestedMax: Math.max(1, ...categoryValues) * 1.2,
+                            grid: { color: 'rgba(139, 148, 158, 0.16)' },
+                            ticks: {
+                                color: '#8b949e',
+                                callback: function(value) { return '₹' + currencyFormat.format(value); }
+                            }
+                        },
+                        y: {
+                            grid: { display: false },
+                            ticks: { color: '#c9d1d9' }
+                        }
+                    }
+                },
+                plugins: [{
+                    id: 'categoryValueLabels',
+                    afterDatasetsDraw: function(chart) {
+                        const context = chart.ctx;
+                        context.save();
+                        context.fillStyle = '#c9d1d9';
+                        context.font = '12px sans-serif';
+                        chart.getDatasetMeta(0).data.forEach(function(bar, index) {
+                            context.fillText('₹' + currencyFormat.format(categoryValues[index]), bar.x + 8, bar.y + 4);
+                        });
+                        context.restore();
+                    }
+                }]
+            });
+        }
+    </script>
+</body>
+</html>
