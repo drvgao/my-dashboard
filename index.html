@@ -187,15 +187,35 @@
             margin-bottom: 40px;
         }
 
+        .category-pie-container {
+            position: relative;
+            height: 620px;
+            padding: 12px;
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+
         .category-name {
             font-size: 14px;
             color: #c9d1d9;
         }
 
         .category-amount {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 5px;
+            white-space: nowrap;
             font-weight: 600;
             color: #58a6ff;
-            font-size: 16px;
+            font-size: 14px;
+        }
+
+        .category-percent {
+            color: #8b949e;
+            font-size: 11px;
+            font-weight: 500;
         }
 
         @media (max-width: 768px) {
@@ -226,7 +246,7 @@
     <div class="container">
         <header>
             <h1>💰 Expense Management Dashboard</h1>
-            <p class="subtitle">Generated on October 22, 2026 at 01:55 PM</p>
+            <p class="subtitle">Generated on October 23, 2026 at 02:02 PM</p>
         </header>
 
                 <h2 style="margin: 0 0 4px; color: #c9d1d9; font-size: 18px; line-height: 1.3;">October Expenses</h2>
@@ -251,20 +271,20 @@
                         <td>Paid</td>
                         <td class="notes">MFs repeats every month</td>
                     </tr>
-                    <tr class="" data-expense-row="true">
+                    <tr class="paid-row" data-expense-row="true">
                         <td>protien food</td>
                         <td><span class="category-badge badge-health-wellness">Health & Wellness</span></td>
                         <td>Oct</td>
                         <td class="amount">₹1,000</td>
-                        <td>Pending</td>
+                        <td>Paid</td>
                         <td class="notes">for health and fitness</td>
                     </tr>
-                    <tr class="" data-expense-row="true">
+                    <tr class="paid-row" data-expense-row="true">
                         <td>Credit Card Bill</td>
                         <td><span class="category-badge badge-expenses">Expenses</span></td>
                         <td>Oct</td>
-                        <td class="amount">₹7,000</td>
-                        <td>Pending</td>
+                        <td class="amount">₹6,399</td>
+                        <td>Paid</td>
                         <td class="notes">Credit Card Bill (check final amount)</td>
                     </tr>
                     <tr class="paid-row" data-expense-row="true">
@@ -309,7 +329,7 @@
                     </tr>
                     <tr class="paid-row" data-expense-row="true">
                         <td>Dusshera transport fee</td>
-                        <td><span class="category-badge badge-festival">Festival</span></td>
+                        <td><span class="category-badge badge-dasara-festival">Dasara Festival</span></td>
                         <td>Oct</td>
                         <td class="amount">₹6,000</td>
                         <td>Paid</td>
@@ -317,7 +337,7 @@
                     </tr>
                     <tr class="paid-row" data-expense-row="true">
                         <td>Dusshera shopping</td>
-                        <td><span class="category-badge badge-festival">Festival</span></td>
+                        <td><span class="category-badge badge-dasara-festival">Dasara Festival</span></td>
                         <td>Oct</td>
                         <td class="amount">₹0</td>
                         <td>Paid</td>
@@ -387,12 +407,12 @@
                         <td>Paid</td>
                         <td class="notes">ACT wifi bill</td>
                     </tr>
-                    <tr class="" data-expense-row="true">
+                    <tr class="paid-row" data-expense-row="true">
                         <td>Sanvi school transport fee</td>
                         <td><span class="category-badge badge-education">Education</span></td>
                         <td>Oct</td>
                         <td class="amount">₹20,000</td>
-                        <td>Pending</td>
+                        <td>Paid</td>
                         <td class="notes">transport final term</td>
                     </tr>
                     <tr class="paid-row" data-expense-row="true">
@@ -421,19 +441,19 @@
                     </tr>
                     <tr>
                         <td colspan="3"><strong>Paid Total</strong></td>
-                        <td class="amount"><strong>₹92,452</strong></td>
+                        <td class="amount"><strong>₹119,851</strong></td>
                         <td></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td colspan="3"><strong>Pending Total</strong></td>
-                        <td class="amount"><strong>₹28,000</strong></td>
+                        <td class="amount"><strong>₹0</strong></td>
                         <td></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td colspan="3"><strong>Current Month Total</strong></td>
-                        <td class="amount"><strong>₹120,452</strong></td>
+                        <td class="amount"><strong>₹119,851</strong></td>
                         <td></td>
                         <td></td>
                     </tr>
@@ -448,55 +468,55 @@
                 <span class="category-name">
                     <span class="category-badge badge-investment">Investment</span>
                 </span>
-                <span class="category-amount">₹23,000</span>
+                <span class="category-amount">₹23,000<span class="category-percent">19.2%</span></span>
             </div>
             <div class="category-item">
                 <span class="category-name">
                     <span class="category-badge badge-education">Education</span>
                 </span>
-                <span class="category-amount">₹20,000</span>
+                <span class="category-amount">₹20,000<span class="category-percent">16.7%</span></span>
             </div>
             <div class="category-item">
                 <span class="category-name">
                     <span class="category-badge badge-expenses">Expenses</span>
                 </span>
-                <span class="category-amount">₹19,360</span>
+                <span class="category-amount">₹18,759<span class="category-percent">15.7%</span></span>
             </div>
             <div class="category-item">
                 <span class="category-name">
                     <span class="category-badge badge-insurance">Insurance</span>
                 </span>
-                <span class="category-amount">₹17,692</span>
+                <span class="category-amount">₹17,692<span class="category-percent">14.8%</span></span>
             </div>
             <div class="category-item">
                 <span class="category-name">
                     <span class="category-badge badge-other">Other</span>
                 </span>
-                <span class="category-amount">₹16,000</span>
+                <span class="category-amount">₹16,000<span class="category-percent">13.3%</span></span>
             </div>
             <div class="category-item">
                 <span class="category-name">
                     <span class="category-badge badge-celebration">Celebration</span>
                 </span>
-                <span class="category-amount">₹9,200</span>
+                <span class="category-amount">₹9,200<span class="category-percent">7.7%</span></span>
             </div>
             <div class="category-item">
                 <span class="category-name">
                     <span class="category-badge badge-kids-extracurricular">Kids Extracurricular</span>
                 </span>
-                <span class="category-amount">₹8,200</span>
+                <span class="category-amount">₹8,200<span class="category-percent">6.8%</span></span>
             </div>
             <div class="category-item">
                 <span class="category-name">
-                    <span class="category-badge badge-festival">Festival</span>
+                    <span class="category-badge badge-dasara-festival">Dasara Festival</span>
                 </span>
-                <span class="category-amount">₹6,000</span>
+                <span class="category-amount">₹6,000<span class="category-percent">5.0%</span></span>
             </div>
             <div class="category-item">
                 <span class="category-name">
                     <span class="category-badge badge-health-wellness">Health & Wellness</span>
                 </span>
-                <span class="category-amount">₹1,000</span>
+                <span class="category-amount">₹1,000<span class="category-percent">0.8%</span></span>
             </div>
         </div>
 
@@ -516,35 +536,35 @@
                 <tbody>
                     <tr>
                         <td>Oct 2026</td>
-                        <td class="amount">₹120,000</td>
-                        <td class="amount">₹92,452</td>
-                        <td class="amount">₹28,000</td>
-                        <td class="amount remaining-ok">₹27,548</td>
-                        <td class="amount remaining-over">₹-452</td>
+                        <td class="amount">₹140,000</td>
+                        <td class="amount">₹119,851</td>
+                        <td class="amount">₹0</td>
+                        <td class="amount remaining-ok">₹20,149</td>
+                        <td class="amount remaining-ok">₹20,149</td>
                     </tr>
                     <tr>
                         <td>Nov 2026</td>
-                        <td class="amount">₹120,000</td>
+                        <td class="amount">₹140,000</td>
                         <td class="amount">₹0</td>
                         <td class="amount">₹26,200</td>
-                        <td class="amount remaining-ok">₹120,000</td>
-                        <td class="amount remaining-ok">₹93,800</td>
+                        <td class="amount remaining-ok">₹140,000</td>
+                        <td class="amount remaining-ok">₹113,800</td>
                     </tr>
                     <tr>
                         <td>Dec 2026</td>
-                        <td class="amount">₹120,000</td>
+                        <td class="amount">₹140,000</td>
                         <td class="amount">₹0</td>
                         <td class="amount">₹16,000</td>
-                        <td class="amount remaining-ok">₹120,000</td>
-                        <td class="amount remaining-ok">₹104,000</td>
+                        <td class="amount remaining-ok">₹140,000</td>
+                        <td class="amount remaining-ok">₹124,000</td>
                     </tr>
                     <tr>
                         <td>Apr 2027</td>
-                        <td class="amount">₹120,000</td>
+                        <td class="amount">₹140,000</td>
                         <td class="amount">₹0</td>
                         <td class="amount">₹30,000</td>
-                        <td class="amount remaining-ok">₹120,000</td>
-                        <td class="amount remaining-ok">₹90,000</td>
+                        <td class="amount remaining-ok">₹140,000</td>
+                        <td class="amount remaining-ok">₹110,000</td>
                     </tr>
                 </tbody>
             </table>
@@ -564,20 +584,20 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Kannaya Dress</td>
-                        <td><span class="category-badge badge-celebration">Celebration</span></td>
-                        <td>Nov</td>
-                        <td class="amount">₹1,200</td>
-                        <td>Pending</td>
-                        <td class="notes">Kannaya Dress</td>
-                    </tr>
-                    <tr>
                         <td>Sanvi final term</td>
                         <td><span class="category-badge badge-education">Education</span></td>
                         <td>Nov</td>
                         <td class="amount">₹25,000</td>
                         <td>Pending</td>
                         <td class="notes">tution fee final term</td>
+                    </tr>
+                    <tr>
+                        <td>Kannaya Dress</td>
+                        <td><span class="category-badge badge-celebration">Celebration</span></td>
+                        <td>Nov</td>
+                        <td class="amount">₹1,200</td>
+                        <td>Pending</td>
+                        <td class="notes">Kannaya Dress</td>
                     </tr>
                     <tr>
                         <td>Dhruvin final term fee</td>
@@ -608,6 +628,11 @@
         <h2 style="margin-bottom: 12px; margin-top: 40px; color: #c9d1d9; font-size: 20px;">October Category Totals (Chart)</h2>
         <div class="category-chart-container">
             <canvas id="category-expenses-chart" role="img" aria-label="October expenses by category"></canvas>
+        </div>
+
+        <h2 style="margin-bottom: 12px; margin-top: 40px; color: #c9d1d9; font-size: 20px;">October Expense Summary (Pie Chart)</h2>
+        <div class="category-pie-container">
+            <canvas id="category-expenses-pie" role="img" aria-label="October expense category percentages and amounts"></canvas>
         </div>
 
         <div style="text-align: center; color: #6e7681; font-size: 12px; margin-top: 40px; padding-top: 20px; border-top: 1px solid #30363d;">
@@ -665,12 +690,12 @@ if (expensesTable) {
 </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
     <script>
-        const categoryLabels = ["Investment", "Education", "Expenses", "Insurance", "Other", "Celebration", "Kids Extracurricular", "Festival", "Health & Wellness"];
-        const categoryValues = [23000.0, 20000.0, 19360.0, 17692.0, 16000.0, 9200.0, 8200.0, 6000.0, 1000.0];
+        const categoryLabels = ["Investment", "Education", "Expenses", "Insurance", "Other", "Celebration", "Kids Extracurricular", "Dasara Festival", "Health & Wellness"];
+        const categoryValues = [23000.0, 20000.0, 18759.0, 17692.0, 16000.0, 9200.0, 8200.0, 6000.0, 1000.0];
+        const categoryColors = ['#58a6ff', '#3fb950', '#e3b341', '#ff7b72', '#bc8cff', '#79c0ff', '#ffa657', '#f778ba'];
+        const currencyFormat = new Intl.NumberFormat('en-IN');
         const categoryCanvas = document.getElementById('category-expenses-chart');
         if (categoryLabels.length && window.Chart) {
-            const categoryColors = ['#58a6ff', '#3fb950', '#e3b341', '#ff7b72', '#bc8cff', '#79c0ff', '#ffa657', '#f778ba'];
-            const currencyFormat = new Intl.NumberFormat('en-IN');
             new Chart(categoryCanvas, {
                 type: 'bar',
                 data: {
@@ -713,6 +738,105 @@ if (expensesTable) {
                         context.font = '12px sans-serif';
                         chart.getDatasetMeta(0).data.forEach(function(bar, index) {
                             context.fillText('₹' + currencyFormat.format(categoryValues[index]), bar.x + 8, bar.y + 4);
+                        });
+                        context.restore();
+                    }
+                }]
+            });
+        }
+
+        const categoryPieCanvas = document.getElementById('category-expenses-pie');
+        if (categoryLabels.length && window.Chart) {
+            const categoryTotal = categoryValues.reduce((sum, value) => sum + value, 0);
+            new Chart(categoryPieCanvas, {
+                type: 'pie',
+                data: {
+                    labels: categoryLabels,
+                    datasets: [{
+                        data: categoryValues,
+                        backgroundColor: categoryLabels.map((label, index) => categoryColors[index % categoryColors.length]),
+                        borderColor: '#0d1117',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    layout: { padding: 12 },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            align: 'start',
+                            labels: {
+                                color: '#c9d1d9',
+                                usePointStyle: true,
+                                pointStyle: 'circle',
+                                padding: 14,
+                                generateLabels: function(chart) {
+                                    return chart.data.labels.map(function(label, index) {
+                                        const percent = categoryTotal ? categoryValues[index] / categoryTotal * 100 : 0;
+                                        return {
+                                            text: label + ' : ' + percent.toFixed(1) + '%',
+                                            fillStyle: categoryColors[index % categoryColors.length],
+                                            fontColor: '#c9d1d9',
+                                            strokeStyle: '#0d1117',
+                                            lineWidth: 1,
+                                            hidden: !chart.getDataVisibility(index),
+                                            index: index
+                                        };
+                                    });
+                                }
+                            }
+                        }
+                    }
+                },
+                plugins: [{
+                    id: 'pieValueLabels',
+                    afterDatasetsDraw: function(chart) {
+                        const context = chart.ctx;
+                        const arcs = chart.getDatasetMeta(0).data;
+                        context.save();
+                        context.fillStyle = '#0d1117';
+                        context.textAlign = 'center';
+                        context.textBaseline = 'middle';
+                        context.font = 'bold 12px sans-serif';
+                        arcs.forEach(function(arc, index) {
+                            const percent = categoryTotal ? categoryValues[index] / categoryTotal * 100 : 0;
+                            if (percent < 6.5) return;
+                            const angle = (arc.startAngle + arc.endAngle) / 2;
+                            const radius = arc.outerRadius * 0.58;
+                            const x = arc.x + Math.cos(angle) * radius;
+                            const y = arc.y + Math.sin(angle) * radius;
+                            const maxTextWidth = Math.max(40, 2 * radius * Math.sin((arc.endAngle - arc.startAngle) / 2) * 0.82);
+                            const words = categoryLabels[index].split(' ').filter(Boolean);
+                            let fontSize = 10;
+                            context.font = 'bold ' + fontSize + 'px sans-serif';
+                            while (fontSize > 8 && words.some(word => context.measureText(word).width > maxTextWidth)) {
+                                fontSize -= 1;
+                                context.font = 'bold ' + fontSize + 'px sans-serif';
+                            }
+                            const labelLines = [];
+                            let line = '';
+                            words.forEach(function(word) {
+                                const candidate = line ? line + ' ' + word : word;
+                                if (line && context.measureText(candidate).width > maxTextWidth) {
+                                    labelLines.push(line);
+                                    line = word;
+                                } else {
+                                    line = candidate;
+                                }
+                            });
+                            if (line) labelLines.push(line);
+                            const valueLines = labelLines.concat([
+                                '₹' + currencyFormat.format(categoryValues[index]),
+                                percent.toFixed(1) + '%'
+                            ]);
+                            const lineHeight = fontSize + 3;
+                            const firstLineY = y - ((valueLines.length - 1) * lineHeight) / 2;
+                            context.font = 'bold ' + fontSize + 'px sans-serif';
+                            valueLines.forEach(function(valueLine, lineIndex) {
+                                context.fillText(valueLine, x, firstLineY + lineIndex * lineHeight);
+                            });
                         });
                         context.restore();
                     }
