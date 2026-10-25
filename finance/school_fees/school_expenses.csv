@@ -1,0 +1,13 @@
+child_name,class_grade,expense_type,description,amount,paid_date,academic_year,payment_status,notes
+Sanvi,Class 7,Fees,School Confirmation Fee,11000,31-03-2026,2025-26,Paid,Annual confirmation
+Sanvi,Class 7,Transport,Transportation Term 1,20000,31-03-2026,2025-26,Paid,April to June
+Sanvi,Class 7,Transport,Transportation Term 2,20000,15-09-2026,2025-26,Paid,Sept to Dec
+Sanvi,Class 7,Books,School Books and Stationery,8700,31-03-2026,2025-26,Paid,Complete set
+Sanvi,Class 7,Fees,Term I Fee,50000,15-06-2026,2025-26,Paid,April-June quarter
+Sanvi,Class 7,Fees,Term II Fee,25000,03-08-2026,2025-26,Paid,July-Sept quarter
+Sanvi,Class 7,Fees,Term III Fee,25000,15-11-2026,2025-26,Upcoming,Upcoming payment
+Dhruvin,Grade I,Books,School Books Package,5500,31-03-2026,2025-26,Paid,Activity books included
+Dhruvin,Grade I,Fees,School Confirmation Fee,27000,02-03-2026,2025-26,Paid,Annual admission
+Dhruvin,Grade I,Fees,Term Fee June,16000,10-06-2026,2025-26,Paid,June-Aug term
+Dhruvin,Grade I,Fees,Term Fee September,16000,01-09-2026,2025-26,Paid,Paid on 01-Sep-2026
+Dhruvin,Grade I,Fees,Term Fee December,16000,10-12-2026,2025-26,Upcoming,Upcoming

@@ -1,0 +1,13 @@
+Type,Description,Amount,Date,Status,Category
+Expense,Sanvi School Confirmation Fee,11000,31-Mar-2026,Paid,Education/Activities
+Expense,Sanvi School Transportation Term1,20000,31-Mar-2026,Paid,Education/Activities
+Expense,Sanvi School Transportation Term2,20000,Sep-2026,Paid,Education/Activities
+Expense,Sanvi School Books,8700,31-Mar-2026,Paid,Education/Activities
+Expense,Sanvi School Quarterly Fee (Q2),50000,Apr-2026,Paid,Education/Activities
+Expense,Sanvi School Quarterly Fee (Q3),25000,03-Aug-2026,Paid,Education/Activities
+Expense,Sanvi School Quarterly Fee (Q4),25000,Nov-2026,Upcoming,Education/Activities
+Expense,Dhruvin School Books,5500,31-Mar-2026,Paid,Education/Activities
+Expense,Dhruvin School Confirmation Fee,27000,2-Mar-2026,Paid,Education/Activities
+Expense,Dhruvin School Term Fee (June),16000,Jun-2026,Paid,Education/Activities
+Expense,Dhruvin School Term Fee (Sept),16000,Sep-2026,Upcoming,Education/Activities
+Expense,Dhruvin School Term Fee (Dec),16000,Dec-2026,Upcoming,Education/Activities
